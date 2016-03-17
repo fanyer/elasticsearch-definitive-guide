@@ -1,7 +1,7 @@
 [[running-elasticsearch]]
 === 安装并运行 Elasticsearch
 
-了解 Elasticsearch 最简单的方法就是去尽情地去使用它，让我们一起开始探索之旅吧！((("Elasticsearch", "installing")))
+了解 Elasticsearch 最简单的方法就是去使用它，让我们一起开始探索之旅吧！((("Elasticsearch", "installing")))
 
 安装 Elasticsearch 只有一个要求，那就是需要安装最新版本的 Java。而且最好从 Java 官网 http://www.java.com[_www.java.com_] 下载最新版本的 Java ((("Java", "installing")))来安装。
 
@@ -77,10 +77,7 @@ Sense 是一个 https://www.elastic.co/guide/en/kibana/current/index.html[Kibana
 --------------------------------------------------
 <1> Windows: `bin\kibana.bat plugin --install elastic/sense`.
 +
-NOTE: 如果你需要 https://www.elastic.co/guide/en/sense/current/installing.html#manual_download[在离线主机上安装 Sense]，可以直接下载 https://download.elastic.co/elastic/sense/sense-latest.tar.gz。
-
-NOTE: You can download Sense from https://download.elastic.co/elastic/sense/sense-latest.tar.gz
-to https://www.elastic.co/guide/en/sense/current/installing.html#manual_download[install it on an offline machine].
+NOTE: 如果需要 https://www.elastic.co/guide/en/sense/current/installing.html#manual_download[离线安装 Sense]，你可以从这里直接下载： https://download.elastic.co/elastic/sense/sense-latest.tar.gz。
 
 . 运行 Kibana.
 +
