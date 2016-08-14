@@ -1,35 +1,31 @@
-[[relevance-intro]]
-=== What Is Relevance?
+[[相关性引言]]
+=== 什么是相关性?
 
-We've mentioned that, by default, results are returned in descending order of
-relevance.((("relevance", "defined"))) But what is relevance? How is it calculated?
+我们曾经讲过，默认情况下，返回结果是按相关性倒序排列的。((("relevance", "defined")))
+但是什么是相关性？ 相关性如何计算？
 
-The relevance score of each document is represented by a positive floating-point number called the `_score`.((("score", "calculation of"))) The higher the `_score`, the more relevant
-the document.
+每个文档都有相关性评分，用一个相对的正浮点数字段 `_score` 来表示((("score", "calculation of"))) 。 `_score` 的评分越高，相关性越高。
 
-A query clause generates a `_score` for each document.  How that score is
-calculated depends on the type of query clause.((("fuzzy queries", "calculation of relevence score"))) Different query clauses are
-used for different purposes: a `fuzzy` query might determine the `_score` by
-calculating how similar the spelling of the found word is to the original
-search term; a `terms` query would incorporate the percentage of terms that
-were found. However, what we usually mean by _relevance_ is the algorithm that we
-use to calculate how similar the contents of a full-text field are to a full-text query string.
 
-The standard _similarity algorithm_ used in Elasticsearch is((("Term Frequency/Inverse Document Frequency  (TF/IDF) similarity algorithm")))((("similarity algorithms", "Term Frequency/Inverse Document Frequency  (TF/IDF)"))) known as  _term
-frequency/inverse document frequency_, or _TF/IDF_, which takes the following
-factors into((("inverse document frequency"))) account:
+查询语句会为每个文档生成一个 `_score` 字段。评分的计算方式取决于查询类型 ((("fuzzy queries", "calculation of relevence score")))
+不同的查询语句用于不同的目的：`fuzzy` 查询会计算与关键词的拼写相似程度，`terms`查询会计算
+找到的内容与关键词组成部分匹配的百分比，但是通常我们说的 _relevance_ 是我们用来计算全文本字段的值相对于全文本检索词相似程度的算法。
 
-Term frequency::
+
+
+ElasticSearch的相似度算法((("Term Frequency/Inverse Document Frequency  (TF/IDF) similarity algorithm")))((("similarity algorithms", "Term Frequency/Inverse Document Frequency  (TF/IDF)")))被定义为检索词频率/反向文档频率， _TF/IDF_，包括以下内容：
+
+
+检索词频率::
 
    How often does the term appear in the field? The more often, the more
   relevant. A field containing five mentions of the same term is more likely
   to be relevant than a field containing just one mention.
 
-Inverse document frequency::
+反向文档频率::
 
-   How often does each term appear in the index? The more often, the _less_
-  relevant. Terms that appear in many documents have a lower _weight_ than
-  more-uncommon terms.
+   每个检索词在索引中出现的频率？频率越高，相关性越低。
+  检索词出现在多数文档中会比出现在少数文档中的权重更低。
 
 Field-length norm::
 
@@ -141,19 +137,19 @@ subcalculations that were required:
    ]
 }
 --------------------------------------------------
-<1> Summary of the score calculation for `honeymoon`
-<2> Term frequency
-<3> Inverse document frequency
-<4> Field-length norm
+<1> `honeymoon` 相关性评分计算的总结
+<2> 检索词频率
+<3> 反向文档频率
+<4> 字段长度准则
 
-WARNING: Producing the `explain` output is expensive.((("explain parameter", "overhead of using"))) It is a debugging tool
-only. Don't leave it turned on in production.
+警告: 输出 `explain` 结果代价是十分昂贵的，它只能用作调试工具((("explain parameter", "overhead of using"))) 。
+千万不要用于生产环境。
 
-The first part is the summary of the calculation. It tells us that it has
-calculated the _weight_&#x2014;the ((("weight", "calculation of")))((("Term Frequency/Inverse Document Frequency  (TF/IDF) similarity algorithm", "weight calculation for a term")))TF/IDF--of the term `honeymoon` in the field `tweet`, for document `0`.  (This is
-an internal document ID and, for our purposes, can be ignored.)
 
-It then provides details((("field-length norm")))((("inverse document frequency"))) of how the weight was calculated:
+第一部分是关于计算的总结。告诉了我们 `"honeymoon"` 在 `tweet`字段中的检索词频率/反向文档频率或 TF/IDF，
+（这里的文档 `0` 是一个内部的ID，跟我们没有关系，可以忽略。）
+
+然后解释了计算的权重是如何计算出来的：
 
 Term frequency::
 
@@ -214,5 +210,5 @@ Along with the full explanation((("description", "of why a document didn&#x27;t 
 "failure to match filter: cache(user_id:[2 TO 2])"
 --------------------------------------------------
 
-In other words, our `user_id` filter clause is preventing the document from
-matching.
+也就是说我们的 `user_id` 过滤子句使该文档不能匹配到。
+
