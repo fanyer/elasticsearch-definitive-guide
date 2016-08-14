@@ -1,5 +1,5 @@
 
-== Building Bar Charts
+== 建立柱状图
 
 One of the exciting aspects of aggregations are how easily they are converted
 into charts and graphs.((("bar charts, building from aggregations", id="ix_barcharts", range="startofrange")))((("aggregations", "building bar charts from")))  In this chapter, we are focusing
@@ -53,7 +53,7 @@ buckets on, and an interval size.  The interval defines how "wide" each bucket
 is.  An interval of 20000 means we will have the ranges `[0-19999, 20000-39999, ...]`.
 
 Next, we define a nested metric inside the histogram.  This is a `sum` metric, which
-will sum up the `price` field from each document landing in that price range. 
+will sum up the `price` field from each document landing in that price range.
 This gives us the revenue for each price range, so we can see if our business
 makes more money from commodity or luxury cars.
 
@@ -115,7 +115,7 @@ image::images/elas_28in01.png["Sales and Revenue per price bracket"]
 Of course, you can build bar charts with any aggregation that emits categories
 and statistics, not just the `histogram` bucket.  Let's build a bar chart of the
 top 10 most popular makes, and their average price, and then calculate the standard
-error to add error bars on our chart.  This will use the `terms` bucket and 
+error to add error bars on our chart.  This will use the `terms` bucket and
 an `extended_stats` ((("extended_stats metric")))metric:
 
 [source,js]
@@ -149,7 +149,7 @@ and `stats.std_deviation`.  Using((("standard error, calculating"))) this inform
 std_err = std_deviation / count
 ................................
 
-This will allow us to build a chart like <<barcharts-bar1>>.
+这允许我们建立一个类似 <<barcharts-bar1>>的柱状图.
 
 [[barcharts-bar1]]
 .Average price of all makes, with error bars
