@@ -1,6 +1,10 @@
 
 == 建立柱状图
 
+聚合的令人兴奋的一个方面是其很容易转换成图表和图形。
+在本章中，我们的重点，我们着眼于不同的分析，其可以得出我们的示例数据。
+我们也阐述聚合可以支持的图表类型
+
 One of the exciting aspects of aggregations are how easily they are converted
 into charts and graphs.((("bar charts, building from aggregations", id="ix_barcharts", range="startofrange")))((("aggregations", "building bar charts from")))  In this chapter, we are focusing
 on various analytics that we can wring out of our example dataset.  We will also
